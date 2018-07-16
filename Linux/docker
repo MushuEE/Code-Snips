@@ -1,0 +1,34 @@
+Install Docker
+$ git clone ssh://git@bitbucket.128technology.com:7000/op/docker.git
+$ cd docker
+$ ./install_docker
+Create Container
+The following command creates and starts a container from an image
+
+$ cd docker
+$ ./create_container [-n <cntr_name>] [-p <ssh_port>] [-s <storage_gb>]
+-n <cntr_name>: Name of the container (default: dev_container)
+
+-p <ssh_port>: Optionally pass through another sshd port in order to run multiple containers on the same VM (default 12800)
+
+-s <storage_size>: Size of the container root disk (default 30G)
+
+Start/Stop Containers
+The docker run command creates and starts a container, but once created it can only be stopped and started, not "run". So use these:
+$ docker stop <container_name>
+$ docker start <container_name>
+List Images
+$ docker images
+List Containers
+List Running
+$ docker ps
+List All
+$ docker ps -a
+
+List Current Container Commands (Find an unused sshd port)
+$ docker ps -a --format '{{.Command}}' --no-trunc
+Delete stopped containers
+$ docker ps -aq --no-trunc -f status=exited | xargs docker rm
+Rename containers
+$ docker rename <old-name> <new-name>
+

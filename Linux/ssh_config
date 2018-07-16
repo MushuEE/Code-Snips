@@ -1,0 +1,12 @@
+#~/.ssh/config
+# names of docker containers with ports
+Host turtle1
+    HostName 172.20.7.122
+    Port 12801
+    User gmccloskey
+
+Host turtle2
+    HostName 172.20.7.122
+    Port 12802
+    User gmccloskey
+

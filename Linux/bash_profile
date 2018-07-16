@@ -1,0 +1,64 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+
+export PATH
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+#
+if [ -f $HOME/bin/git-completion.bash ]; then
+   source $HOME/bin/git-completion.bash
+fi
+#
+if [ -f $HOME/bin/git-prompt.sh ]; then
+   source $HOME/bin/git-prompt.sh
+   PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+fi
+######################Alias########################
+alias l='ls -lah'
+alias dev='ssh gmccloskey@172.20.7.122'
+
+alias ll='ls -la'
+alias l.='ls -d .*'
+
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias diff='colordiff'
+alias vi='vim'
+alias i95='cd /Users/gmccloskey/workspace/i95'
+alias j95='cd /Users/gmccloskey/workspace/j95'
+alias status='git status -uno'
+alias remount_vm='sshfs gmccloskey@192.168.56.33:/Users/gmccloskey/shared /Users/grantmccloskey/shared/ -o allow_other,sshfs_sync,no_readahead,sync_readdir,workaround=nonodelaysrv'
+alias copy_logsi='scp turtle1:/Users/gmccloskey/workspace/i95/build/*.html /Users/gmccloskey/workspace/i95/build/'
+alias copy_logsj='scp turtle1:/Users/gmccloskey/workspace/j95/build/*.html /Users/gmccloskey/workspace/j95/build/'
+alias rsendi='RHOST=turtle1 rpush;greset'
+alias rsendj='RHOST=turtle2 rpush;greset'
+
+export NVM_DIR="/Users/grantmccloskey/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Setting PATH for Python 3.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
