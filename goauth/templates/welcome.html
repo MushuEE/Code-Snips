@@ -19,6 +19,7 @@
 
 	// Call the user info API using the fetch browser library
 	fetch('//api.github.com/user', {
+		    mode: 'cors',
 			headers: {
 				// Include the token in the Authorization header
 				Authorization: 'token ' + token

@@ -8,7 +8,7 @@ import (
 )
 
 const clientID = "834fdfb3c1711e44cc04"
-const clientSecret = "<secret>"
+const clientSecret = "s"
 
 func main() {
 	fs := http.FileServer(http.Dir("templates"))
