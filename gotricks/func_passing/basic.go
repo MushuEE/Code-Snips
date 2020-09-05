@@ -19,6 +19,10 @@ func simple(f func(a A)) {
 
 func main() {
 	simple(A.APrint)
+	y := map[string]bool{"hello": true}
+	for i := range y {
+		fmt.Print(i)
+	}
 	x := A{"foobar"}
 	x.APrint()
 }
