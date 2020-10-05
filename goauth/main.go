@@ -1,10 +1,15 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"net/http"
 	"os"
+
+	"github.com/google/go-github/github"
+	"golang.org/x/oauth2"
 )
 
 const clientID = "834fdfb3c1711e44cc04"
@@ -56,8 +61,19 @@ func main() {
 
 		// Finally, send a response to redirect the user to the "welcome" page
 		// with the access token
-		w.Header().Set("Location", "/welcome.html?access_token="+t.AccessToken)
-		w.WriteHeader(http.StatusFound)
+		// w.Header().Set("Location", "/welcome.html?access_token="+t.AccessToken)
+		// w.WriteHeader(http.StatusFound)
+		ctx := context.Background()
+		ts := oauth2.StaticTokenSource(
+			&oauth2.Token{AccessToken: t.AccessToken},
+		)
+		tc := oauth2.NewClient(ctx, ts)
+
+		client := github.NewClient(tc)
+
+		// list all repositories for the authenticated user
+		repos, _, err := client.Repositories.List(ctx, "", nil)
+		fmt.Println(repos)
 	})
 
 	http.ListenAndServe(":8080", nil)
@@ -65,4 +81,13 @@ func main() {
 
 type OAuthAccessResponse struct {
 	AccessToken string `json:"access_token"`
+}
+
+func PrintHTMLReport(repos []*github.Repository) {
+	t := template.Must(template.ParseGlob("./templates/*"))
+	err := t.ExecuteTemplate(os.Stdout, "welcome", repos)
+	if err != nil {
+		fmt.Print("execute: ", err)
+		return
+	}
 }
