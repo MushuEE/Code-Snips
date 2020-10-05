@@ -13,7 +13,7 @@ import (
 )
 
 const clientID = "834fdfb3c1711e44cc04"
-const clientSecret = "<secret>"
+const clientSecret = "s"
 
 func main() {
 	fs := http.FileServer(http.Dir("templates"))
@@ -81,6 +81,7 @@ func main() {
 
 type OAuthAccessResponse struct {
 	AccessToken string `json:"access_token"`
+<<<<<<< HEAD
 }
 
 func PrintHTMLReport(repos []*github.Repository) {
@@ -91,3 +92,6 @@ func PrintHTMLReport(repos []*github.Repository) {
 		return
 	}
 }
+=======
+}
+>>>>>>> 504c05a791df6947d7c096f0d17d305425ad6ee1
