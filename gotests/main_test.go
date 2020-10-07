@@ -16,7 +16,7 @@ func TestOneBranch(t *testing.T) {
 
 func TestTwoBranch(t *testing.T) {
 	TwoBranch(6, 0)
-	TwoBranch(7, 0)
-	TwoBranch(13, 0)
-	TwoBranch(14, 0)
+	// TwoBranch(7, 0)
+	// TwoBranch(2, 14)
+	// TwoBranch(0, 50)
 }
