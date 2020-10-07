@@ -13,7 +13,7 @@ func OneBranch(a int) {
 	fmt.Println(a + 5)
 }
 
-func TwoBranch(a, b int) {
+func TwoBranch(a, b int) int {
 	if a > 5 || b > 10 {
 		fmt.Println(a)
 		fmt.Println(b)
@@ -22,7 +22,14 @@ func TwoBranch(a, b int) {
 	} else {
 		fmt.Println(b + 22)
 	}
+	return a + b
 }
+
+// func ComputeTheMeaningOfLife() int {
+// 	fmt.Println(42)
+// 	// TODO: etherial math
+// 	panic()
+// }
 
 func main() {
 	fmt.Println("Hello, world.")
