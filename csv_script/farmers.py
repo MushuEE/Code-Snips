@@ -2,6 +2,7 @@ import csv
 from enum import Enum
 import matplotlib.pyplot as plt
 
+
 class Month(Enum):
     Never = 0
     Jan = 1
@@ -61,6 +62,7 @@ class Farmer:
     def get_profit_per_arce(self):
         return self.get_profits()/(self.area*self.land_percent/100)
 
+
 if __name__ == "__main__":
     farmers = []
     with open('farmers.csv') as csv_file:
@@ -85,6 +87,7 @@ if __name__ == "__main__":
         x = farmer.normal_yield
         farmer.normal_yield = int(1.5 * farmer.normal_yield)
         print(f'Yield was increased from {x} to {farmer.normal_yield}')
+
 
     #run in terminal for this: pip3 install matplotlib
     x = [farmer.id for farmer in farmers]
