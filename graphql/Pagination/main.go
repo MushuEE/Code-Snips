@@ -14,6 +14,13 @@ func main() {
 		Name string
 	}
 
+	type Rates struct {
+		Cost      int
+		Limit     int
+		Remaining int
+		Used      int
+	}
+
 	type ReposOrgQuery struct {
 		Organization struct {
 			Repositories struct {
@@ -26,11 +33,12 @@ func main() {
 				}
 			} `graphql:"repositories(first: $first, after: $cursor)"`
 		} `graphql:"organization(login: $login)"`
+		RateLimit Rates
 	}
 	repos := []RepoName{}
 	ctx := context.Background()
 	org := "GoogleCloudPlatform"
-	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: os.Getenv("GITHUB_TOKEN")})
+	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: os.Getenv("GIT_HUB_TOKEN")})
 	hc := oauth2.NewClient(ctx, ts)
 	client := githubv4.NewClient(hc)
 	q := ReposOrgQuery{}
@@ -48,6 +56,7 @@ func main() {
 			repos = append(repos, repo.Node)
 		}
 		variables["cursor"] = githubv4.String(q.Organization.Repositories.PageInfo.EndCursor)
+		fmt.Println(q.RateLimit)
 	}
 	fmt.Println(repos)
 }
